@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class NumberControllerIntegrationTest extends IntegrationBaseTest {
+public class NumberSourceControllerIntegrationTest extends IntegrationBaseTest {
 
     @MockBean
     private NumberService numberService;

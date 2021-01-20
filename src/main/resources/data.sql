@@ -4,5 +4,5 @@
 --number INT NOT NULL
 --);
 
-INSERT INTO number VALUES (1, 456);
-INSERT INTO number VALUES (2, 789);
+INSERT INTO number_source VALUES (1, 456);
+INSERT INTO number_source VALUES (2, 789);

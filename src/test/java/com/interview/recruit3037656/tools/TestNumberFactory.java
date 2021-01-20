@@ -1,13 +1,13 @@
 package com.interview.recruit3037656.tools;
 
-import com.interview.recruit3037656.model.Number;
+import com.interview.recruit3037656.model.NumberSource;
 
 public class TestNumberFactory {
     public static final Long FIRST_VALUE = 1l;
-    public static Number createNumber() {
-        return Number.builder()
+    public static NumberSource createNumber() {
+        return NumberSource.builder()
                 .id(FIRST_VALUE)
-                .number("456")
+                .numberValue("456")
                 .build();
     }
 }

@@ -1,7 +1,7 @@
 package com.interview.recruit3037656.service;
 
 import com.interview.recruit3037656.exception.IncorrectRequestException;
-import com.interview.recruit3037656.model.Number;
+import com.interview.recruit3037656.model.NumberSource;
 import com.interview.recruit3037656.repository.NumberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,23 +18,23 @@ public class NumberService {
     private final NumberRepository numberRepository;
     private static Random random = new Random();
 
-    public ArrayList<Number> getAllNumbers() {
-        ArrayList<Number> students = new ArrayList<>();
+    public ArrayList<NumberSource> getAllNumbers() {
+        ArrayList<NumberSource> students = new ArrayList<>();
         log.info("Retrieving all numbers...");
         numberRepository.findAll().forEach(students::add);
 
         return students;
     }
 
-    public Number getNumberById(Long id) {
+    public NumberSource getNumberById(Long id) {
         log.info(String.format("Getting number by it's id: '%s'", id));
 
         return numberRepository.findById(id).get();
     }
 
-    public void saveOrUpdate(Number number) {
-        log.info(String.format("Saving number: '%s'", number.getNumber()));
-        numberRepository.save(number);
+    public void saveOrUpdate(NumberSource numberSource) {
+        log.info(String.format("Saving number: '%s'", numberSource.getNumberValue()));
+        numberRepository.save(numberSource);
     }
 
     public void delete(Long id) {
@@ -45,13 +45,14 @@ public class NumberService {
     public int calculateAddition(Long id) throws IncorrectRequestException {
         int generatedInt = random.nextInt(100);
 
-        Optional<Number> optionalNumber = Optional.of(numberRepository.findById(id).get());
-        if (!optionalNumber.isPresent()) {
+        Optional<NumberSource> optionalNumber = numberRepository.findById(id);
+        if (optionalNumber.isEmpty())
+        {
             throw new IncorrectRequestException(id);
         }
 
-        Number repositoryNumber = optionalNumber.get();
-        int integerFromH2 = Integer.parseInt(repositoryNumber.getNumber());
+        NumberSource repositoryNumberSource = optionalNumber.get();
+        int integerFromH2 = Integer.parseInt(repositoryNumberSource.getNumberValue());
         log.info(String.format("addition of db value: '%s' and randomly generated number: '%s'", integerFromH2, generatedInt));
 
         return generatedInt + integerFromH2;

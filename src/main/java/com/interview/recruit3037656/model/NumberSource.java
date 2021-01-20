@@ -11,16 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "number")
+@Table(name = "number_source")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Number {
+public class NumberSource {
     @Id
     @Column
     private Long id;
 
     @Column
-    private String number;
+    private String numberValue;
+
+    //TODO dodac sposob laczenia z innymi danymi badz dodanie mozliwosci dodania kolejnego typu danych...
 }

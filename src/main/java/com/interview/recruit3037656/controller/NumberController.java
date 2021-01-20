@@ -1,15 +1,13 @@
 package com.interview.recruit3037656.controller;
 
 import com.interview.recruit3037656.exception.IncorrectRequestException;
-import com.interview.recruit3037656.model.Number;
+import com.interview.recruit3037656.model.NumberSource;
 import com.interview.recruit3037656.service.NumberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -19,7 +17,7 @@ public class NumberController {
     private final NumberService numberService;
 
     @GetMapping("/addition/{id}")
-    private int getAddition(@PathVariable("id") Long id) {
+    public int getAddition(@PathVariable("id") Long id) {
         int addition = 0;
 
         try {
@@ -32,32 +30,24 @@ public class NumberController {
     }
 
     @GetMapping("/numbers")
-    private ArrayList<Number> getAllNumbers() {
+    public List<NumberSource> getAllNumbers() {
         return numberService.getAllNumbers();
-    }
+    } //Tu lepiej zwracac interfejs (List niz implementacje)...
 
     @GetMapping("/number/{id}")
-    private Number getNumberById(@PathVariable("id") Long id) {
+    public NumberSource getNumberById(@PathVariable("id") Long id) {
         return numberService.getNumberById(id);
     }
 
     @DeleteMapping("/number/{id}")
-    private void deleteNumber(@PathVariable("id") Long id) {
+    public void deleteNumber(@PathVariable("id") Long id) {
         numberService.delete(id);
     }
 
     @PostMapping("/number")
-    private Long saveNumber(@RequestBody Number number) {
-        numberService.saveOrUpdate(number);
+    public Long saveNumber(@RequestBody NumberSource numberSource) {
+        numberService.saveOrUpdate(numberSource);
 
-        return number.getId();
-    }
-
-    @ExceptionHandler
-    public ResponseEntity handleOtherException(final Exception exception) {
-        log.error("Unexpected exception was encountered. ", exception);
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .build();
+        return numberSource.getId();  //TODO do zamiany na DTO...
     }
 }

@@ -1,7 +1,7 @@
 package com.interview.recruit3037656.service;
 
 import com.interview.recruit3037656.exception.IncorrectRequestException;
-import com.interview.recruit3037656.model.Number;
+import com.interview.recruit3037656.model.NumberSource;
 import com.interview.recruit3037656.repository.NumberRepository;
 import com.interview.recruit3037656.tools.TestNumberFactory;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class NumberServiceUnitTest {
+class NumberSourceServiceUnitTest {
 
     @Mock
     private NumberRepository numberRepository;
@@ -27,10 +27,10 @@ class NumberServiceUnitTest {
     @Test
     void calculateAddition() throws IncorrectRequestException {
         // Arrange
-        Number expectedNumber = TestNumberFactory.createNumber();
-        int expectedInteger = Integer.parseInt(expectedNumber.getNumber());
+        NumberSource expectedNumberSource = TestNumberFactory.createNumber();
+        int expectedInteger = Integer.parseInt(expectedNumberSource.getNumberValue());
 
-        when(numberRepository.findById(anyLong())).thenReturn(java.util.Optional.of(expectedNumber));
+        when(numberRepository.findById(anyLong())).thenReturn(java.util.Optional.of(expectedNumberSource));
 
         //Act
         int actualAddition = numberService.calculateAddition(FIRST_VALUE);
