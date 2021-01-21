@@ -2,6 +2,7 @@ package com.interview.recruit3037656.controller;
 
 import com.interview.recruit3037656.exception.IncorrectRequestException;
 import com.interview.recruit3037656.model.NumberSource;
+import com.interview.recruit3037656.model.NumberSourceDto;
 import com.interview.recruit3037656.service.NumberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,9 +46,9 @@ public class NumberController {
     }
 
     @PostMapping("/number")
-    public Long saveNumber(@RequestBody NumberSource numberSource) {
-        numberService.saveOrUpdate(numberSource);
+    public Long saveNumber(@RequestBody NumberSourceDto numberSourceDto) {
+        numberService.saveOrUpdate(numberSourceDto);
 
-        return numberSource.getId();  //TODO do zamiany na DTO...
+        return numberSourceDto.getNumberId();  //TODO do zamiany na DTO...
     }
 }
