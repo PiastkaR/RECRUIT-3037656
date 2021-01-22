@@ -20,11 +20,11 @@ public class NumberService {
     private static Random random = new Random();
 
     public ArrayList<NumberSource> getAllNumbers() {
-        ArrayList<NumberSource> students = new ArrayList<>();
+        ArrayList<NumberSource> numbers = new ArrayList<>();
         log.info("Retrieving all numbers...");
-        numberRepository.findAll().forEach(students::add);
+        numberRepository.findAll().forEach(numbers::add);
 
-        return students;
+        return numbers;
     }
 
     public NumberSource getNumberById(Long id) {
