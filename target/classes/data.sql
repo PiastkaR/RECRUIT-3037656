@@ -1,8 +1,0 @@
---DROP TABLE IF EXISTS number;
---CREATE TABLE number (
---id BIGINT AUTO_INCREMENT  PRIMARY KEY,
---number INT NOT NULL
---);
-
-INSERT INTO number_source VALUES (1, 456);
-INSERT INTO number_source VALUES (2, 789);
