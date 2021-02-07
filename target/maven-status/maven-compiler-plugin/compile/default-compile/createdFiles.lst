@@ -1,8 +1,9 @@
 com\interview\recruit3037656\controller\NumberController.class
-com\interview\recruit3037656\model\Number$NumberBuilder.class
+com\interview\recruit3037656\model\NumberSource$NumberSourceBuilder.class
 com\interview\recruit3037656\repository\NumberRepository.class
 com\interview\recruit3037656\InterviewApp.class
 com\interview\recruit3037656\model\RandNumber.class
+com\interview\recruit3037656\model\NumberSource.class
 com\interview\recruit3037656\exception\IncorrectRequestException.class
-com\interview\recruit3037656\model\Number.class
 com\interview\recruit3037656\service\NumberService.class
+com\interview\recruit3037656\model\NumberSourceDto.class
